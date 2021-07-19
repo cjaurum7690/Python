@@ -1,0 +1,104 @@
+# CJ Aurum -- Aurum Creative
+# July 18, 2021
+# Lottery Picks
+
+import random
+
+
+def again():
+    get_lotto_again = input('\nWould you like to play again? ')
+
+    if get_lotto_again.lower() == 'y':
+        main()
+    else:
+        exit()
+
+
+def playLotto1(name, howManyPicks, numberOfBalls):
+    print(name + ':')
+    for i in range(howManyPicks):
+        value = random.randint(0, numberOfBalls - 1)
+        print('\t', value, end=' ')
+
+    again()
+
+
+def playLotto2(name, howManyPicks, numberOfBalls, lastBall):
+    numbers = []
+
+    for i in range(howManyPicks):
+        value = random.randint(1, numberOfBalls)
+        numbers.append(value)
+
+    if numbers[1] == numbers[0]:
+        playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+    elif numbers[2] == numbers[0] or numbers[2] == numbers[1]:
+        playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+    elif numbers[3] == numbers[0] or numbers[3] == numbers[1] or numbers[3] == numbers[2]:
+        playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+    elif numbers[4] == numbers[0] or numbers[4] == numbers[1] or numbers[4] == numbers[2] or numbers[4] == numbers[3]:
+        playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+    else:
+        sort_numbers = sorted(numbers)
+        print(('\n\n' + name + ': '), *sort_numbers, sep=" ")
+
+    if lastBall == 26:
+        print('The PowerBall is: ', random.randint(1, lastBall))
+    elif lastBall == 25:
+        print('The MegaBall is: ', random.randint(1, lastBall))
+    else:
+        print('The LuckyBall is: ', random.randint(1, lastBall))
+
+    again()
+
+
+def main():
+    print('Which Lotto do you want numbers for? ')
+    print('\t1) PowerBall\n\t2) MegaMillions\n\t' +
+          '3) Lucky4Life\n\t4) Pick 4\n\t5) Pick 3\n')
+    selection = int(input('Your Choice (Enter 99 to Quit): '))
+    start_lotto(selection)
+
+
+def start_lotto(selection):
+    try:
+        if selection == 1:
+            name = 'PowerBall'
+            howManyPicks = 5
+            numberOfBalls = 69
+            lastBall = 26
+            playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == 2:
+            name = 'MegaMillions'
+            howManyPicks = 5
+            numberOfBalls = 70
+            lastBall = 25
+            playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == 3:
+            name = 'Lucky4Life'
+            howManyPicks = 5
+            numberOfBalls = 48
+            lastBall = 18
+            playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == 4:
+            name = 'Pick 4'
+            howManyPicks = 4
+            numberOfBalls = 10
+            playLotto1(name, howManyPicks, numberOfBalls)
+        elif selection == 5:
+            name = 'Pick 3'
+            howManyPicks = 3
+            numberOfBalls = 10
+            playLotto1(name, howManyPicks, numberOfBalls)
+        elif selection == 99:
+            exit()
+        else:
+            print('Invalid')
+            main()
+    except ValueError:
+            print("Invalid")
+            main()
+
+# Executes the main function
+if __name__ == '__main__':
+    main()
