@@ -1,0 +1,29 @@
+# CJ Aurum -- Aurum Creative
+# July 18, 2021
+# Fibonacci Sequence
+
+# Print the sequence to screen with 4 ways to display
+again = 'y'
+
+while again.lower() == 'y':
+    value = int(input('How many numbers in the Fibonacci Sequence would you like to see? '))
+
+    num1 = 0
+    num2 = 1
+    fib_list = [num1, num2]
+
+    for num in range(value - 2):
+        num3 = num1 + num2
+        fib_list.append(num3)
+        num1 = num2
+        num2 = num3
+
+    print(fib_list)
+    print(*fib_list)
+    print(*fib_list, sep=", ")
+    print(*fib_list, sep="\n")
+
+    again = input('Would you like to try again? ')
+
+print('Good-bye!')
+
