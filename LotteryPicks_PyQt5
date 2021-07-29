@@ -1,0 +1,303 @@
+# CJ Aurum -- Aurum Creative
+# July 29, 2021 
+# Lottery Picks for PyQt5
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+import random
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(600, 300)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        MainWindow.setFont(font)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.frame_buttons = QtWidgets.QFrame(self.centralwidget)
+        self.frame_buttons.setGeometry(QtCore.QRect(10, 10, 160, 200))
+        self.frame_buttons.setFrameShape(QtWidgets.QFrame.Box)
+        self.frame_buttons.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_buttons.setObjectName("frame_buttons")
+        self.radioButton_power = QtWidgets.QRadioButton(self.frame_buttons)
+        self.radioButton_power.setEnabled(True)
+        self.radioButton_power.setGeometry(QtCore.QRect(10, 5, 140, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_power.setFont(font)
+        self.radioButton_power.setObjectName("radioButton_power")
+        self.radioButton_mega = QtWidgets.QRadioButton(self.frame_buttons)
+        self.radioButton_mega.setEnabled(True)
+        self.radioButton_mega.setGeometry(QtCore.QRect(10, 45, 140, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_mega.setFont(font)
+        self.radioButton_mega.setObjectName("radioButton_mega")
+        self.radioButton_pick4 = QtWidgets.QRadioButton(self.frame_buttons)
+        self.radioButton_pick4.setEnabled(True)
+        self.radioButton_pick4.setGeometry(QtCore.QRect(10, 125, 140, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_pick4.setFont(font)
+        self.radioButton_pick4.setObjectName("radioButton_pick4")
+        self.radioButton_lucky = QtWidgets.QRadioButton(self.frame_buttons)
+        self.radioButton_lucky.setEnabled(True)
+        self.radioButton_lucky.setGeometry(QtCore.QRect(10, 85, 140, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_lucky.setFont(font)
+        self.radioButton_lucky.setObjectName("radioButton_lucky")
+        self.radioButton_pick3 = QtWidgets.QRadioButton(self.frame_buttons)
+        self.radioButton_pick3.setEnabled(True)
+        self.radioButton_pick3.setGeometry(QtCore.QRect(10, 165, 140, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.radioButton_pick3.setFont(font)
+        self.radioButton_pick3.setObjectName("radioButton_pick3")
+        self.results_frame = QtWidgets.QFrame(self.centralwidget)
+        self.results_frame.setGeometry(QtCore.QRect(179, 10, 400, 200))
+        self.results_frame.setFrameShape(QtWidgets.QFrame.Panel)
+        self.results_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.results_frame.setObjectName("results_frame")
+        self.label_top_display = QtWidgets.QLabel(self.results_frame)
+        self.label_top_display.setGeometry(QtCore.QRect(10, 15, 380, 35))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Light, brush)
+        self.label_top_display.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setUnderline(True)
+        self.label_top_display.setFont(font)
+        self.label_top_display.setAutoFillBackground(True)
+        self.label_top_display.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_top_display.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_top_display.setObjectName("label_top_display")
+        self.label_top_2 = QtWidgets.QLabel(self.results_frame)
+        self.label_top_2.setGeometry(QtCore.QRect(10, 150, 380, 35))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Light, brush)
+        self.label_top_2.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setUnderline(False)
+        self.label_top_2.setFont(font)
+        self.label_top_2.setAutoFillBackground(True)
+        self.label_top_2.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_top_2.setText("")
+        self.label_top_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_top_2.setObjectName("label_top_2")
+        self.label_bottom_display = QtWidgets.QLabel(self.results_frame)
+        self.label_bottom_display.setGeometry(QtCore.QRect(10, 105, 380, 35))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Light, brush)
+        self.label_bottom_display.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setUnderline(True)
+        self.label_bottom_display.setFont(font)
+        self.label_bottom_display.setAutoFillBackground(True)
+        self.label_bottom_display.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_bottom_display.setText("")
+        self.label_bottom_display.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_bottom_display.setObjectName("label_bottom_display")
+        self.label_top_4 = QtWidgets.QLabel(self.results_frame)
+        self.label_top_4.setGeometry(QtCore.QRect(10, 60, 380, 35))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Light, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 127))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Light, brush)
+        self.label_top_4.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setUnderline(False)
+        self.label_top_4.setFont(font)
+        self.label_top_4.setAutoFillBackground(True)
+        self.label_top_4.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_top_4.setText("")
+        self.label_top_4.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_top_4.setObjectName("label_top_4")
+        self.button_get_numbers = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.start_lotto())
+        self.button_get_numbers.setGeometry(QtCore.QRect(240, 210, 120, 51))
+        self.button_get_numbers.setObjectName("button_get_numbers")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.radioButton_power.setText(_translate("MainWindow", "PowerBall"))
+        self.radioButton_mega.setText(_translate("MainWindow", "MegaBall"))
+        self.radioButton_pick4.setText(_translate("MainWindow", "Pick 4"))
+        self.radioButton_lucky.setText(_translate("MainWindow", "Lucky4Life"))
+        self.radioButton_pick3.setText(_translate("MainWindow", "Pick 3"))
+        self.label_top_display.setText(_translate("MainWindow", "Your Lottery Picks"))
+        self.button_get_numbers.setText(_translate("MainWindow", "Get Numbers"))
+
+
+    def playLotto1(self, name, howManyPicks, numberOfBalls):
+        self.label_bottom_display.setText(str(''))
+        self.label_top_2.setText(str(''))
+        result = ''
+        for i in range(howManyPicks):
+            value = random.randint(0, numberOfBalls - 1)
+            result += (str(value) + str('  '))
+        self.label_top_4.setText(result)
+
+
+    def playLotto2(self, name, howManyPicks, numberOfBalls, lastBall):
+        numbers = []
+        result = ''
+        for i in range(howManyPicks):
+            value = random.randint(1, numberOfBalls)
+            numbers.append(value)
+
+        if numbers[1] == numbers[0]:
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif numbers[2] == numbers[0] or numbers[2] == numbers[1]:
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif numbers[3] == numbers[0] or numbers[3] == numbers[1] or numbers[3] == numbers[2]:
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif numbers[4] == numbers[0] or numbers[4] == numbers[1] or numbers[4] == numbers[2] or numbers[4] == numbers[
+            3]:
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        else:
+            sort_numbers = sorted(numbers)
+            new_result = ''
+            # print((name + ': '), *sort_numbers, sep="  ")
+            # result += (str(sort_numbers) + str('  '))
+            # print(result)
+            for num in sort_numbers:
+                new_result += (str(num) + '  ')
+            # result += (str(*sort_numbers), sep="  ")
+            # print(new_result)
+            self.label_top_4.setText(new_result)
+
+        if lastBall == 26:
+            # print('The PowerBall is: ', random.randint(1, lastBall))
+            last = random.randint(1, lastBall)
+            self.label_bottom_display.setText('The PowerBall is: ')
+            self.label_top_2.setText(str(last))
+        elif lastBall == 25:
+            # print('The MegaBall is: ', random.randint(1, lastBall))
+            last = random.randint(1, lastBall)
+            self.label_bottom_display.setText('The MegaBall is: ')
+            self.label_top_2.setText(str(last))
+        else:
+            # print('The LuckyBall is: ', random.randint(1, lastBall))
+            last = random.randint(1, lastBall)
+            self.label_bottom_display.setText('The LuckyBall is: ')
+            self.label_top_2.setText(str(last))
+
+    def start_lotto(self):
+        #self.label.setText("Hello There!")
+        if self.radioButton_power.isChecked():
+            name = 'PowerBall'
+            howManyPicks = 5
+            numberOfBalls = 69
+            lastBall = 26
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        if self.radioButton_mega.isChecked():
+            name = 'MegaMillions'
+            howManyPicks = 5
+            numberOfBalls = 70
+            lastBall = 25
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        if self.radioButton_lucky.isChecked():
+            name = 'Lucky4Life'
+            howManyPicks = 5
+            numberOfBalls = 48
+            lastBall = 18
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        if self.radioButton_pick4.isChecked():
+            name = 'Pick 4'
+            howManyPicks = 4
+            numberOfBalls = 10
+            self.playLotto1(name, howManyPicks, numberOfBalls)
+        if self.radioButton_pick3.isChecked():
+            name = 'Pick 3'
+            howManyPicks = 3
+            numberOfBalls = 10
+            self.playLotto1(name, howManyPicks, numberOfBalls)
+
+'''
+# if you use the Radio Buttons only
+    def start_lotto(self, selection):
+        self.label_bottom_display.setText(str(''))
+        self.label_top_2.setText(str(''))
+        self.label_top_4.setText(str(''))
+        if selection == '1':
+            name = 'PowerBall'
+            howManyPicks = 5
+            numberOfBalls = 69
+            lastBall = 26
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == '2':
+            name = 'MegaMillions'
+            howManyPicks = 5
+            numberOfBalls = 70
+            lastBall = 25
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == '3':
+            name = 'Lucky4Life'
+            howManyPicks = 5
+            numberOfBalls = 48
+            lastBall = 18
+            self.playLotto2(name, howManyPicks, numberOfBalls, lastBall)
+        elif selection == '4':
+            name = 'Pick 4'
+            howManyPicks = 4
+            numberOfBalls = 10
+            self.playLotto1(name, howManyPicks, numberOfBalls)
+        elif selection == '5':
+            name = 'Pick 3'
+            howManyPicks = 3
+            numberOfBalls = 10
+            self.playLotto1(name, howManyPicks, numberOfBalls)
+        else:
+            print('Invalid')
+'''
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
