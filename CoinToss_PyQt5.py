@@ -1,3 +1,7 @@
+# CJ Aurum -- Aurum Creative
+# July 29, 2021 
+# Coin Toss for PyQt5
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 import random
 
