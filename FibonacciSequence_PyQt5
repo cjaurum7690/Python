@@ -303,9 +303,7 @@ class Ui_Fibonacci_Main(object):
 
 
     def fib(self):
-        print("in fib")
         c = int(self.how_many_input.text())
-        print(c)
         fib_list = []
         num1 = 0
         num2 = 1
@@ -323,8 +321,6 @@ class Ui_Fibonacci_Main(object):
                 fib_list.append(num3)
                 num1 = num2
                 num2 = num3
-        print('before label')
-        print(fib_list)
         self.results_label.setText(str(''))
         result = ''
         for i in fib_list:
