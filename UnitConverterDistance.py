@@ -28,7 +28,7 @@ def convert_yards(number):
 
 def convert_feet(number):
     print(number, 'miles is equal to:')
-    print('\t', number + .000189394, 'miles')
+    print('\t', number * .000189394, 'miles')
     print('\t', number * .3333, 'yards')
     print('\t', number, 'feet')
     print('\t', number * 12, 'inches')
