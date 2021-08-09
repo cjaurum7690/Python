@@ -15,7 +15,7 @@ def convert_miles(number):
 
 
 def convert_yards(number):
-    print(number, 'miles is equal to:')
+    print(number, 'yards is equal to:')
     print('\t', number * .000568182, 'miles')
     print('\t', number, 'yards')
     print('\t', number * 3, 'feet')
@@ -27,7 +27,7 @@ def convert_yards(number):
 
 
 def convert_feet(number):
-    print(number, 'miles is equal to:')
+    print(number, 'feet is equal to:')
     print('\t', number * .000189394, 'miles')
     print('\t', number * .3333, 'yards')
     print('\t', number, 'feet')
@@ -39,7 +39,7 @@ def convert_feet(number):
 
 
 def convert_inches(number):
-    print(number, 'miles is equal to:')
+    print(number, 'inches is equal to:')
     print('\t', number * .000015783, 'miles')
     print('\t', number * .027778, 'yards')
     print('\t', number * .083333, 'feet')
@@ -51,7 +51,7 @@ def convert_inches(number):
 
 
 def convert_km(number):
-    print(number, 'miles is equal to:')
+    print(number, 'kilometers is equal to:')
     print('\t', number * .621, 'miles')
     print('\t', number * 1093.61, 'yards')
     print('\t', number * 3280.84, 'feet')
@@ -63,7 +63,7 @@ def convert_km(number):
 
 
 def convert_meters(number):
-    print(number, 'miles is equal to:')
+    print(number, 'meters is equal to:')
     print('\t', number * .000621371, 'miles')
     print('\t', number * 1.09361, 'yards')
     print('\t', number * 3.28084, 'feet')
@@ -75,7 +75,7 @@ def convert_meters(number):
 
 
 def convert_cm(number):
-    print(number, 'miles is equal to:')
+    print(number, 'centimeters is equal to:')
     print('\t', number * .0000062137, 'miles')
     print('\t', number * .0109361, 'yards')
     print('\t', number * .032808, 'feet')
@@ -87,7 +87,7 @@ def convert_cm(number):
 
 
 def convert_naut_miles(number):
-    print(number, 'miles is equal to:')
+    print(number, 'nautical miles is equal to:')
     print('\t', number * 1.15078, 'miles')
     print('\t', number * 2025.37, 'yards')
     print('\t', number * 6076.12, 'feet')
