@@ -1,0 +1,119 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+from youtube_dl import YoutubeDL
+import os
+import ffmpeg
+import subprocess
+import shutil
+
+audio_downloader = YoutubeDL({'format': 'bestaudio'})
+
+
+class Ui_YouTubeDownloader(object):
+    def setupUi(self, YouTubeDownloader):
+        YouTubeDownloader.setObjectName("YouTubeDownloader")
+        YouTubeDownloader.resize(576, 618)
+        self.centralwidget = QtWidgets.QWidget(YouTubeDownloader)
+        self.centralwidget.setObjectName("centralwidget")
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(80, 30, 420, 250))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.yt_code_lineEdit = QtWidgets.QLineEdit(self.frame)
+        self.yt_code_lineEdit.setGeometry(QtCore.QRect(290, 40, 121, 30))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.yt_code_lineEdit.setFont(font)
+        self.yt_code_lineEdit.setObjectName("yt_code_lineEdit")
+        self.base_address_label = QtWidgets.QLabel(self.frame)
+        self.base_address_label.setGeometry(QtCore.QRect(10, 40, 271, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.base_address_label.setFont(font)
+        self.base_address_label.setFrameShape(QtWidgets.QFrame.Box)
+        self.base_address_label.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.base_address_label.setObjectName("base_address_label")
+        self.instructions_label = QtWidgets.QLabel(self.frame)
+        self.instructions_label.setGeometry(QtCore.QRect(10, 10, 400, 20))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.instructions_label.setFont(font)
+        self.instructions_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.instructions_label.setObjectName("instructions_label")
+        self.download_pushButton = QtWidgets.QPushButton(self.frame, clicked=lambda: self.download_file())
+        self.download_pushButton.setGeometry(QtCore.QRect(160, 90, 100, 31))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.download_pushButton.setFont(font)
+        self.download_pushButton.setObjectName("download_pushButton")
+        YouTubeDownloader.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(YouTubeDownloader)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 576, 21))
+        self.menubar.setObjectName("menubar")
+        YouTubeDownloader.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(YouTubeDownloader)
+        self.statusbar.setObjectName("statusbar")
+        YouTubeDownloader.setStatusBar(self.statusbar)
+
+        self.retranslateUi(YouTubeDownloader)
+        QtCore.QMetaObject.connectSlotsByName(YouTubeDownloader)
+
+    def retranslateUi(self, YouTubeDownloader):
+        _translate = QtCore.QCoreApplication.translate
+        YouTubeDownloader.setWindowTitle(_translate("YouTubeDownloader", "YouTubeDownloader"))
+        self.base_address_label.setText(_translate("YouTubeDownloader", "https://www.youtube.com/watch?v="))
+        self.instructions_label.setText(_translate("YouTubeDownloader", "Input the YouTube item code in the box below"))
+        self.download_pushButton.setText(_translate("YouTubeDownloader", "Download"))
+
+    # Getting the YouTube Information
+    def convert(self, id, title):
+        new_title = title.replace(' ', '')
+        ffmpeg_loc = 'c:/ffmpeg/'
+        input_loc = 'C:/Users/YourFileLocation/'
+        output_loc = 'C:/FFMPEG/Downloads/'
+
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            # ending = '.webm'
+            if '.webm' in filename:
+                shutil.move(filename, input_loc)
+                command = ffmpeg_loc + 'ffmpeg.exe -i ' + input_loc + new_title + '-' + id + '.webm' + ' ' + output_loc + new_title + '.mp3'
+                print(command)
+                subprocess.run(command)
+            # ending = '.m4a'
+            if '.m4a' in filename:
+                shutil.move(filename, input_loc)
+                command = ffmpeg_loc + 'ffmpeg.exe -i ' + input_loc + new_title + '-' + id + '.m4a' + ' ' + output_loc + new_title + '.mp3'
+                print(command)
+                subprocess.run(command)
+        self.yt_code_lineEdit.setText("")
+
+    def rename_file(self):
+        path = os.getcwd()
+        filenames = os.listdir(path)
+        for filename in filenames:
+            os.rename(filename, filename.replace(" ", ""))
+
+
+    def download_file(self):
+        base_URL = 'https://www.youtube.com/watch?v='
+        link = self.yt_code_lineEdit.text()
+        yt = (base_URL + link)
+        download = audio_downloader.extract_info(yt)
+        id = download['id']
+        title = download['title']
+
+        self.rename_file()
+        self.convert(id, title)
+
+
+if __name__ == "__main__":
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    YouTubeDownloader = QtWidgets.QMainWindow()
+    ui = Ui_YouTubeDownloader()
+    ui.setupUi(YouTubeDownloader)
+    YouTubeDownloader.show()
+    sys.exit(app.exec_())
